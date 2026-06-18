@@ -16,8 +16,8 @@ spec:
           command: ['sh', '-c', 'until nc -z db 5432; do echo cho db...; sleep 2; done']
       containers:
         - name: app
-          image: docs-app:1.0
-          imagePullPolicy: IfNotPresent
+          image: docker.io/hieuvcs/docs-app:latest
+          imagePullPolicy: Always
           env:
             - name: DATABASE_URL
               valueFrom:
