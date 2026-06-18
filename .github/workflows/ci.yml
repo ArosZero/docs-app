@@ -27,3 +27,11 @@ jobs:
             ${{ secrets.REGISTRY_USER }}/docs-app:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      - name: Cap nhat tag image trong manifest
+        run: |
+          sed -i "s|image: .*/docs-app:.*|image: docker.io/${{ secrets.REGISTRY_USER }}/docs-app:${{ github.sha }}|" k8s/app.yaml
+          git config user.name "ci-bot"
+          git config user.email "ci@example.com"
+          git add k8s/app.yaml
+          git commit -m "deploy ${{ github.sha }} [skip ci]" || echo "khong doi"
+          git push
