@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: docs-migrate
+spec:
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: Never
+      initContainers:
+        - name: wait-db
+          image: busybox:1.36
+          command: ['sh','-c','until nc -z db 5432; do echo cho db...; sleep 2; done']
+      containers:
+        - name: migrate
+          image: postgres:16-alpine          # có sẵn psql
+          command: ['sh', '/migrations/run.sh']
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef: { name: docs-db, key: DATABASE_URL }
+          volumeMounts:
+            - name: m
+              mountPath: /migrations
+      volumes:
+        - name: m
+          configMap: { name: docs-migrations }

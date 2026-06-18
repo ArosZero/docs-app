@@ -1,0 +1,10 @@
+<%- include('partials/header', { title: 'Sửa ' + doc.title }) %>
+  <h1>Sửa nội dung — <%= doc.title %></h1>
+  <form method="POST" action="/<%= doc.slug %>">
+    <p><input name="author" placeholder="Tên bạn (tùy chọn)"></p>
+    <textarea name="content" rows="18" style="width:100%"><%= content %></textarea>
+    <p><button type="submit">💾 Lưu phiên bản mới</button>
+       <a href="/<%= doc.slug %>">Hủy</a></p>
+  </form>
+  <p class="hint">Bạn chỉ sửa được nội dung; taskbar/icon do chủ trang quản lý qua code.</p>
+<%- include('partials/footer') %>

@@ -1,0 +1,7 @@
+<%- include('partials/header', { title: doc.title }) %>
+  <h1><%= doc.title %></h1>
+  <p class="meta">Phiên bản <%= version.version_number %> ·
+    <a href="/<%= doc.slug %>/edit">✏️ Sửa</a> ·
+    <a href="/<%= doc.slug %>/history">🕘 Lịch sử</a></p>
+  <article><%- html %></article>
+<%- include('partials/footer') %>

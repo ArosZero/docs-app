@@ -1,0 +1,8 @@
+body { font-family: sans-serif; margin: 0; color: #16202b; }
+.taskbar { background: #0b2e66; color: #fff; padding: 10px 18px;
+  display: flex; align-items: center; gap: 16px; }
+.taskbar a { color: #bcd2f7; text-decoration: none; }
+.logo { width: 24px; height: 24px; }
+main { max-width: 760px; margin: 24px auto; padding: 0 16px; }
+.meta { color: #667; font-size: 14px; }
+.hint { color: #999; font-size: 13px; }

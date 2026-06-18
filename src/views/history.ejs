@@ -1,0 +1,10 @@
+<%- include('partials/header', { title: 'Lịch sử ' + doc.title }) %>
+  <h1>Lịch sử phiên bản — <%= doc.title %></h1>
+  <ul>
+  <% versions.forEach(function(v){ %>
+    <li>Phiên bản <%= v.version_number %> — <%= v.author || 'khách' %> —
+      <%= new Date(v.created_at).toLocaleString('vi-VN') %>
+      — <a href="/<%= doc.slug %>/v/<%= v.version_number %>">xem</a></li>
+  <% }); %>
+  </ul>
+<%- include('partials/footer') %>
